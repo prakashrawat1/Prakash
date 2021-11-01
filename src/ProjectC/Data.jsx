@@ -6,7 +6,7 @@ const Data =[
     {
         img:`${Dog}`, 
         alt:"First slide",
-         heading:"Dr. Priyank Vyas Pet Hospital & Diagnostic Centre dog clinic and veterinary services" ,
+         heading:"Dr. Prakash Rawat Pet Hospital & Diagnostic Centre dog clinic and veterinary services" ,
          para:"Nulla vitae elit libero, a pharetra augue mollis interdum."
     },
     {
