@@ -10,10 +10,22 @@ const Covid=()=>{
     const[data,setData]=useState([]);
 
 const getCovidData=async()=>{
-  const res =  await fetch('https://api.covid19india.org/data.json');
+
+
+try{
+  const res =  await fetch('https://data.covid19india.org/data.json');
   const actualData=await res.json();
-  console.log(actualData);
-  setData(actualData.statewise);
+  console.log(actualData.statewise[0])
+  setData(actualData.statewise[0]);
+}catch(err){
+console.log(err);
+}
+
+
+  
+  // 
+  // console.log(actualData);
+  // setData(actualData.statewise);
 }
 
 
@@ -26,32 +38,113 @@ const getCovidData=async()=>{
         <>
         <Container>
   <Row>
-    <Col> <h1>INDIA COVID-19 DASHBOARD</h1>
-        <Table striped bordered hover>
-  <thead>
-    <tr>
-      <th>STATE</th>
-      <th>CONFIRMED</th>
-      <th>RECOVERED</th>
-      <th>DEATHS</th>
-      <th>ACTIVE</th>
-    </tr>
-  </thead>
-  <tbody>
-      {data.map((val,index)=>{
-          return(
-<tr key={index}>
-      <td>{val.state}</td>
-      <td>{val.confirmed}</td>
-      <td>{val.recovered}</td>
-      <td>{val.deaths}</td>
-      <td>{val.active}</td>
-    </tr>
-          )
-      })}
+    <Col>
     
-  </tbody>
-</Table></Col>
+    <section>
+
+      <div className="corona_head">
+      <h1>
+        🔴LIVE
+      </h1>
+      <h2>COVID-19 CORONAVIRUS TRACKER</h2>
+      </div>
+      <Row>
+      <Col xs={4}>
+      <ul>
+        <li className="card country">
+          <div className="card_main">
+            <div className="card_inner">
+              <p className="card_name">
+                <span>OUR</span>COUNTRY
+              </p>
+              <p className="card_total card_small">INDIA</p>
+            </div>
+          </div>
+        </li>
+        </ul>
+      </Col>
+      
+      <Col xs={4}>
+        <ul>
+        <li className="card recover">
+          <div className="card_main">
+            <div className="card_inner">
+              <p className="card_name">
+                <span>TOTAL</span>RECOVERD
+              </p>
+              <p className="card_total card_small">{data.recovered}</p>
+            </div>
+          </div>
+        </li>
+        </ul>
+      </Col>
+        
+      <Col xs={4}>
+        <ul>
+        <li className="card confirmed">
+          <div className="card_main">
+            <div className="card_inner">
+              <p className="card_name">
+                <span>TOTAL</span>CONFIRMED
+              </p>
+              <p className="card_total card_small">{data.confirmed}</p>
+            </div>
+          </div>
+        </li>
+        </ul>
+      </Col>
+      </Row>
+
+      <Row>
+      <Col xs={4}>
+        <ul>
+        <li className="card death">
+          <div className="card_main">
+            <div className="card_inner">
+              <p className="card_name">
+                <span>TOTAL</span>DEATHS
+              </p>
+              <p className="card_total card_small">{data.deltadeaths}</p>
+            </div>
+          </div>
+        </li>
+        </ul>
+      </Col>
+        
+<Col xs={4}>
+  <ul>
+  <li className="card active">
+          <div className="card_main">
+            <div className="card_inner">
+              <p className="card_name">
+                <span>TOTAL</span>ACTIVE
+              </p>
+              <p className="card_total card_small">{data.active}</p>
+            </div>
+          </div>
+        </li>
+  </ul>
+</Col>
+        
+
+<Col xs={4}>
+  <ul>
+  <li className="card update">
+          <div className="card_main">
+            <div className="card_inner">
+              <p className="card_name">
+                <span>TOTAL</span>UPDATED
+              </p>
+              <p className="card_total card_small">{data.lastupdatedtime}</p>
+            </div>
+          </div>
+        </li>
+  </ul>
+</Col>
+</Row>
+    </section>
+    
+    </Col>
   </Row>
 </Container>
        
